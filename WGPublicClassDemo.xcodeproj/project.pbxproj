@@ -126,8 +126,8 @@
 		E945451E1DED28BC0046E565 /* WGPublicClassDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E94545361DED28D80046E565 /* Class */,
 				E945451F1DED28BC0046E565 /* Supporting Files */,
+				E94545361DED28D80046E565 /* WGPublicClass */,
 				E94545221DED28BC0046E565 /* AppDelegate.h */,
 				E94545231DED28BC0046E565 /* AppDelegate.m */,
 				E94545251DED28BC0046E565 /* ViewController.h */,
@@ -148,14 +148,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E94545361DED28D80046E565 /* Class */ = {
+		E94545361DED28D80046E565 /* WGPublicClass */ = {
 			isa = PBXGroup;
 			children = (
 				E94545371DED28D80046E565 /* Base */,
 				E94545401DED28D80046E565 /* Category */,
 				E94545631DED28D80046E565 /* Tool */,
 			);
-			path = Class;
+			name = WGPublicClass;
+			path = WGPublicClass;
 			sourceTree = "<group>";
 		};
 		E94545371DED28D80046E565 /* Base */ = {
