@@ -10,4 +10,6 @@
 
 @interface WGBaseTableViewController : WGBaseViewController
 
+
+
 @end
