@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/SoftBoys/WGPublicClassDemo.git", :tag => "#{s.version}" }
 
-  s.source_files  = "WGPublicClass", "WGPublicClass/**/*.{h,m}"
+  s.source_files  = "WGPublicClassDemo/WGPublicClass/**/*.{h,m}"
 
   s.requires_arc = true
 
