@@ -29,6 +29,8 @@ typedef NS_ENUM(NSUInteger, WGBaseTableViewRowAnimation) {
 };
 
 @interface WGBaseTableView : UITableView
++ (instancetype)wg_tableView;
++ (instancetype)wg_tableViewWithStyle:(UITableViewStyle)style;
 /** 注册普通Cell */
 - (void)wg_registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier;
 /** 注册HeaderFooterView */

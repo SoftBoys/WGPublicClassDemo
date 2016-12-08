@@ -23,6 +23,8 @@
 + (UIImage *)wg_imageWithColor:(UIColor *)color;
 /** 根据颜色返回一张图片 */
 + (UIImage *)wg_imageWithColor:(UIColor *)color size:(CGSize)size;
+/** 返回一张圆图片 */
+- (UIImage *)wg_circleImage;
 /** 返回一个带圆角的图片 */
 - (UIImage *)wg_imageWithCornerRadius:(CGFloat)cornerRadius;
 /** 返回一个带圆角,边框的图片 */

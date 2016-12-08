@@ -16,10 +16,8 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/SoftBoys/WGPublicClassDemo.git", :tag => "#{s.version}" }
 
   s.source_files  = "WGPublicClassDemo/WGPublicClass/**/*.{h,m}"
-
+  s.frameworks   = 'UIKit', 'Foundation', 'CoreLocation', 'AddressBookUI'
   s.requires_arc = true
 
-  # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-  # s.dependency "JSONKit", "~> 1.4"
 
 end

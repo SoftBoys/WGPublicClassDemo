@@ -11,15 +11,15 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@class WGLocationInfo;
+@class WGLocationInfo, WGLocationManager;
 @protocol WGLocationManagerDelegate <NSObject>
 
-- (void)locationManagerWithLocationInfo:(WGLocationInfo *)info;
-- (void)locationManagerFail:(NSError *)error;
+- (void)locationManager:(WGLocationManager *)manager successInfo:(WGLocationInfo *)info;
+- (void)locationManager:(WGLocationManager *)manager fail:(NSError *)error;
 @end
 
-typedef void(^WGSuccessCallBack)(WGLocationInfo *info);
-typedef void(^WGFailCallBack)(NSError *error);
+typedef void(^WGSuccessCallBack)(WGLocationManager *manager, WGLocationInfo *info);
+typedef void(^WGFailCallBack)(WGLocationManager *manager, NSError *error);
 typedef NS_ENUM(NSUInteger, WGAuthStatus) {
     /** 未授权 (0) */
     kWGAuthStatus_UnAuth = kCLAuthorizationStatusNotDetermined,
@@ -31,6 +31,16 @@ typedef NS_ENUM(NSUInteger, WGAuthStatus) {
     kWGAuthStatus_Always = kCLAuthorizationStatusAuthorizedAlways,
     /** 使用期间 (4) */
     kWGAuthStatus_WhenUse = kCLAuthorizationStatusAuthorizedWhenInUse
+};
+typedef NS_ENUM(NSUInteger, WGResultStatus) {
+    /** 默认状态 (0) */
+    kWGResultStatus_Default,
+    /** 正在定位 (1) */
+    kWGResultStatus_Loading,
+    /** 定位成功 (2) */
+    kWGResultStatus_Success,
+    /** 定位失败 (3) */
+    kWGResultStatus_Fail
 };
 
 @interface WGLocationManager : NSObject
@@ -44,6 +54,8 @@ typedef NS_ENUM(NSUInteger, WGAuthStatus) {
 @property (nonatomic, assign, getter=isCanLocation, readonly) BOOL canLocation;
 /** 获取定位授权状态 */
 @property (nonatomic, assign, readonly) WGAuthStatus authStatus;
+/** 定位结果状态 */
+@property (nonatomic, assign, readonly) WGResultStatus resultStatus;
 /** 代理（记得在不用的时候置nil）*/
 @property (nonatomic, weak) id<WGLocationManagerDelegate> delegate;
 /** 开启定位 (需实现协议WGLocationManagerDelegate) */

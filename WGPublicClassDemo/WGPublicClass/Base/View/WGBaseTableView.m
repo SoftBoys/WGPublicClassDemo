@@ -9,6 +9,13 @@
 #import "WGBaseTableView.h"
 
 @implementation WGBaseTableView
++ (instancetype)wg_tableView {
+    return [self wg_tableViewWithStyle:UITableViewStyleGrouped];
+}
++ (instancetype)wg_tableViewWithStyle:(UITableViewStyle)style {
+    WGBaseTableView *tableView = [[WGBaseTableView alloc] initWithFrame:CGRectZero style:style];
+    return tableView;
+}
 
 - (void)wg_registerClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier {
     if (cellClass && identifier.length) {

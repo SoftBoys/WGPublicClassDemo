@@ -36,7 +36,12 @@
                 [self.locationManager requestAlwaysAuthorization];
             }
         }
+        /** 正在定位 */
+        _resultStatus = kWGResultStatus_Loading;
         [self.locationManager startUpdatingLocation];
+    } else {
+        /** 不可定位 */
+        _resultStatus = kWGResultStatus_Fail;
     }
     if (success) {
         self.successBlock = success;
@@ -60,7 +65,7 @@
     [self stopLocation];
     [self startLocation];
 }
-- (void)restartLocationWithSuccess:(void (^)(WGLocationInfo *))success fail:(void (^)(NSError *))fail {
+- (void)restartLocationWithSuccess:(WGSuccessCallBack)success fail:(WGFailCallBack)fail {
     [self stopLocation];
     [self startLocationWithSuccess:success fail:fail];
 }
@@ -69,17 +74,22 @@
     
     CLLocation *location = manager.location;
     if (location) {
+        /** 定位成功 */
+        _resultStatus = kWGResultStatus_Success;
         [self stopLocation];
         [self setLocationInfoWithLocation:location];
     }
 }
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    
-    if ([self.delegate respondsToSelector:@selector(locationManagerFail:)]) {
-        [self.delegate locationManagerFail:error];
+    /** 定位失败 */
+    _resultStatus = kWGResultStatus_Fail;
+    if ([self.delegate respondsToSelector:@selector(locationManager:fail:)]) {
+        [self.delegate locationManager:self fail:error];
     }
+    
     if (self.failBlock) {
-        self.failBlock(error);
+        __weak typeof(self) weakself = self;
+        self.failBlock(weakself, error);
     }
 }
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
@@ -104,7 +114,6 @@
             
             // 需要引入AddressBookUI.framework类库
             NSString *address = ABCreateStringWithAddressDictionary(place.addressDictionary, YES);
-            
             WGLocationInfo *info = [[WGLocationInfo alloc] init];
             info.name = place.name;
             info.country = place.country;
@@ -118,14 +127,13 @@
             info.location = location;
             _info = info;
             
-            if ([self.delegate respondsToSelector:@selector(locationManagerWithLocationInfo:)]) {
-                [self.delegate locationManagerWithLocationInfo:info];
+            if ([self.delegate respondsToSelector:@selector(locationManager:successInfo:)]) {
+                [self.delegate locationManager:self successInfo:info];
             }
             
             __weak typeof(self) weakself = self;
-//            self.successBlock(weakself.info);
             if (self.successBlock) {
-                self.successBlock(weakself.info);
+                self.successBlock(weakself, weakself.info);
             }
         }
     }];

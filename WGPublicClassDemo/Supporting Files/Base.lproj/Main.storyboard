@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="aH4-Eh-4ql">
             <objects>
-                <navigationController id="OF1-kF-LSQ" sceneMemberID="viewController">
+                <navigationController id="OF1-kF-LSQ" customClass="WGBaseNavigationController" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0ir-jt-f7k">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,7 +19,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1y-sg-TDM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-508" y="401"/>
+            <point key="canvasLocation" x="-880" y="411"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -53,6 +53,16 @@
                                     <action selector="presentClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JdP-o0-OVU"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zO-Cv-rqK">
+                                <rect key="frame" x="153" y="403" width="69" height="30"/>
+                                <color key="backgroundColor" red="0.83191287879999998" green="0.15503428899999999" blue="0.28153609070000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="WebBtn">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="webClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0kk-8U-3jR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -61,7 +71,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="96.5" y="358.5"/>
+            <point key="canvasLocation" x="-371.5" y="402.5"/>
+        </scene>
+        <!--Web View Controller-->
+        <scene sceneID="pM9-uY-ANX">
+            <objects>
+                <viewController id="zak-dR-DqM" customClass="WGWebViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3Qy-fN-o3v"/>
+                        <viewControllerLayoutGuide type="bottom" id="MGi-fm-fYb"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="WV0-LD-J8z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bf4-Gt-ICh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="81.5" y="386.5"/>
         </scene>
     </scenes>
 </document>

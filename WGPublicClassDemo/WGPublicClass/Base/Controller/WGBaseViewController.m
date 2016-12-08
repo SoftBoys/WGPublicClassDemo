@@ -17,16 +17,20 @@
 - (BOOL)prefersStatusBarHidden {
     return self.hiddenStatusBar;
 }
-- (void)setBarStyle:(UIStatusBarStyle)barStyle {
-    _barStyle = barStyle;
+- (void)setStatusBarStyle:(UIStatusBarStyle)statusBarStyle {
+    if (_statusBarStyle == statusBarStyle) return;
+    _statusBarStyle = statusBarStyle;
     [self setNeedsStatusBarAppearanceUpdate];
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
-    return self.barStyle;
+    return self.statusBarStyle;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 #pragma mark - NavigationController
 - (void)wg_pushVC:(UIViewController *)viewController {

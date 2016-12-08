@@ -50,7 +50,11 @@
     UIGraphicsEndImageContext();
     return image;
 }
-
+- (UIImage *)wg_circleImage {
+    CGSize size = self.size;
+    float corner = MIN(size.width, size.height);
+    return [self wg_imageWithCornerRadius:corner];
+}
 - (UIImage *)wg_imageWithCornerRadius:(CGFloat)cornerRadius {
     return [self wg_imageWithCornerRadius:cornerRadius borderWidth:0 borderColor:nil];
 }

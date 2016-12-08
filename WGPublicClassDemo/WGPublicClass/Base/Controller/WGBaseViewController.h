@@ -10,9 +10,9 @@
 
 @interface WGBaseViewController : UIViewController
 /** 隐藏StatusBar */
-@property (nonatomic, assign) BOOL hiddenStatusBar;
-/** StatusBar风格 */
-@property (nonatomic, assign) UIStatusBarStyle barStyle;
+@property (nonatomic, assign, getter=isHiddenStatusBar) BOOL hiddenStatusBar;
+/** StatusBar风格 (不起作用的话在 UINavigationController 中重写 childViewControllerForStatusBarStyle 方法) */
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
 
 @end
 

@@ -29,4 +29,17 @@
     NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     return [pre evaluateWithObject:self];
 }
+
+
+@end
+
+@implementation NSString (Version)
+
+- (BOOL)wg_isOlderVersionThan:(NSString *)otherVersion {
+    return [self compare:otherVersion options:NSNumericSearch] == NSOrderedAscending;
+}
+- (BOOL)wg_isNewerVersionThan:(NSString *)otherVersion {
+    return [self compare:otherVersion options:NSNumericSearch] == NSOrderedDescending;
+}
+
 @end
